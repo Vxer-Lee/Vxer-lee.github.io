@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Lee&#39;s Blog">
+<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:site_name" content="Lee&#39;s Blog">
+<meta property="og:description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="fucklee">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : true,
+    isPost : false,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Lee's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lee's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">专注逆向、网络安全</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-overview-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fucklee"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fucklee</p>
+  <div class="site-description" itemprop="description">喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner index posts-expand">
+      
+
+      
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/05/ios-frida%E7%B3%BB%E5%88%97-hack%E7%9A%84MacBook%20Pro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fucklee">
+      <meta itemprop="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/05/ios-frida%E7%B3%BB%E5%88%97-hack%E7%9A%84MacBook%20Pro/" class="post-title-link" itemprop="url">ios-frida系列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-05 23:20:02" itemprop="dateCreated datePublished" datetime="2020-12-05T23:20:02+08:00">2020-12-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-19 14:12:02" itemprop="dateModified" datetime="2021-04-19T14:12:02+08:00">2021-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="0x00-frida客户端安装"><a href="#0x00-frida客户端安装" class="headerlink" title="#0x00 frida客户端安装"></a>#0x00 frida客户端安装</h3><p><a target="_blank" rel="noopener" href="https://github.com/frida/frida">https://github.com/frida/frida</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置代理</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:1080;<span class="built_in">export</span> https_proxy=http://127.0.0.1:1080;</span><br><span class="line"><span class="comment">#安装frida模块</span></span><br><span class="line">pip3 install frida</span><br><span class="line"><span class="comment">#安装frida-tools工具</span></span><br><span class="line">pip3 install frida-tools</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x01-frida服务端安装"><a href="#0x01-frida服务端安装" class="headerlink" title="#0x01 frida服务端安装"></a>#0x01 frida服务端安装</h3><p>手机越狱</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加源</span></span><br><span class="line">http://build.frida.re</span><br><span class="line"><span class="comment">#根据自身设备安装对应frida-server  (iPhone7)</span></span><br><span class="line">Frida <span class="keyword">for</span> pre-A12 devices</span><br><span class="line"><span class="comment">#重启SpringBoard</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/12/05/ios-frida%E7%B3%BB%E5%88%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fucklee">
+      <meta itemprop="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/12/05/ios-frida%E7%B3%BB%E5%88%97/" class="post-title-link" itemprop="url">ios-frida系列</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-12-05 23:20:02" itemprop="dateCreated datePublished" datetime="2020-12-05T23:20:02+08:00">2020-12-05</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-19 14:12:02" itemprop="dateModified" datetime="2021-04-19T14:12:02+08:00">2021-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="0x00-frida客户端安装"><a href="#0x00-frida客户端安装" class="headerlink" title="#0x00 frida客户端安装"></a>#0x00 frida客户端安装</h3><p><a target="_blank" rel="noopener" href="https://github.com/frida/frida">https://github.com/frida/frida</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#设置代理</span></span><br><span class="line"><span class="built_in">export</span> http_proxy=http://127.0.0.1:1080;<span class="built_in">export</span> https_proxy=http://127.0.0.1:1080;</span><br><span class="line"><span class="comment">#安装frida模块</span></span><br><span class="line">pip3 install frida</span><br><span class="line"><span class="comment">#安装frida-tools工具</span></span><br><span class="line">pip3 install frida-tools</span><br></pre></td></tr></table></figure>
+
+<h3 id="0x01-frida服务端安装"><a href="#0x01-frida服务端安装" class="headerlink" title="#0x01 frida服务端安装"></a>#0x01 frida服务端安装</h3><p>手机越狱</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#添加源</span></span><br><span class="line">http://build.frida.re</span><br><span class="line"><span class="comment">#根据自身设备安装对应frida-server  (iPhone7)</span></span><br><span class="line">Frida <span class="keyword">for</span> pre-A12 devices</span><br><span class="line"><span class="comment">#重启SpringBoard</span></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/19/rust%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-hack%E7%9A%84MacBook%20Pro/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fucklee">
+      <meta itemprop="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/19/rust%E5%AD%A6%E4%B9%A0-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95-hack%E7%9A%84MacBook%20Pro/" class="post-title-link" itemprop="url">rust学习-基础语法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-19 09:48:51" itemprop="dateCreated datePublished" datetime="2020-09-19T09:48:51+08:00">2020-09-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-19 14:12:02" itemprop="dateModified" datetime="2021-04-19T14:12:02+08:00">2021-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h4 id="函数的声明和定义"><a href="#函数的声明和定义" class="headerlink" title="#函数的声明和定义"></a>#函数的声明和定义</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//fn 用来声明或者定义一个函数名. </span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()&#123;</span><br><span class="line">    <span class="comment">//花括号中用来写代码</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;函数具体实现的功能.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="函数带参数定义和调用"><a href="#函数带参数定义和调用" class="headerlink" title="#函数带参数定义和调用"></a>#函数带参数定义和调用</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//fn 带参数的函数定义</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>(x:<span class="built_in">i32</span>,y:<span class="built_in">i32</span>)&#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;参数:&#123;&#125;,&#123;&#125;&quot;</span>,x,y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="语句和表达式"><a href="#语句和表达式" class="headerlink" title="#语句和表达式"></a>#语句和表达式</h4><p>语句：  (语句他不返回任何值)</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()&#123;<span class="comment">//函数定义也是一个语句</span></span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">4</span>;<span class="comment">//这就是一个语句</span></span><br><span class="line">&#125;<span class="comment">//这一整段代码都是一个语句.</span></span><br></pre></td></tr></table></figure>
+<p>表达式:（计算和函数调用是个表达式,{}也是）</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()&#123;</span><br><span class="line">    <span class="comment">//这里是一个语句，定义x赋值5</span></span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">5</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//这个let y = xx也是一个语句</span></span><br><span class="line">   <span class="comment">//&#123;&#125;里面是一个表达式,表达式不能有;</span></span><br><span class="line">    <span class="keyword">let</span> y = &#123;</span><br><span class="line">        <span class="keyword">let</span> x = <span class="number">666</span>;</span><br><span class="line">        <span class="comment">//所以我在这里加了个x</span></span><br><span class="line">        x</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;x的值=&#123;&#125;&quot;</span>,x);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;y的值=&#123;&#125;&quot;</span>,y);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="带返回值和参数的函数"><a href="#带返回值和参数的函数" class="headerlink" title="#带返回值和参数的函数"></a>#带返回值和参数的函数</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()&#123;</span><br><span class="line">    <span class="keyword">let</span> x = function_RetnAndParameter(<span class="number">22</span>,<span class="number">51</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>,x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//# 这里必须需要 箭头指明类型 返回值的类型</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">function_RetnAndParameter</span></span>(x:<span class="built_in">i32</span>,y:<span class="built_in">i32</span>) -&gt; <span class="built_in">i32</span>&#123;</span><br><span class="line">    <span class="comment">//具体返回(x+1)*(y+1)的值</span></span><br><span class="line">    (x+<span class="number">1</span>)*(y+<span class="number">1</span>)<span class="comment">//注意这里一定不能加分号，这样就变成表达式了.</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="控制流-if-else、for、loop、while"><a href="#控制流-if-else、for、loop、while" class="headerlink" title="控制流(if else、for、loop、while)"></a>控制流(if else、for、loop、while)</h2><h4 id="if-else"><a href="#if-else" class="headerlink" title="#if else"></a>#if else</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()&#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">6</span>;</span><br><span class="line">    <span class="keyword">if</span> x &lt; <span class="number">2</span>&#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;x居然比2还要小&quot;</span>);</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;x居然比2还要大&quot;</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//结果:</span></span><br><span class="line">x居然比<span class="number">2</span>还要大</span><br><span class="line"></span><br><span class="line">ps:(<span class="keyword">if</span> 判断后面只能写逻辑类型，如果写的是个整数类型，或者其他类型则会抛出异常)</span><br><span class="line"><span class="keyword">if</span> x&#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;这样写就不对，因为x是整数类型，if需要逻辑类型才行.&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="for"><a href="#for" class="headerlink" title="#for"></a>#for</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//用for循环来遍历集合</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()&#123;</span><br><span class="line">    <span class="comment">//定义一个集合</span></span><br><span class="line">    <span class="keyword">let</span> a = [<span class="number">10</span>,<span class="number">20</span>,<span class="number">30</span>,<span class="number">40</span>,<span class="number">50</span>,<span class="number">60</span>,<span class="number">70</span>,<span class="number">80</span>,<span class="number">90</span>];</span><br><span class="line">    <span class="keyword">for</span> element <span class="keyword">in</span> a.iter()&#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;每个集合的数据:&#123;&#125;&quot;</span>,element);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//用for循环特定的次数</span></span><br><span class="line"><span class="keyword">in</span> (range)</span><br><span class="line"><span class="comment">//意思就是从1开始到4结束 ，那也就是执行4次吧？</span></span><br><span class="line"><span class="keyword">for</span> number <span class="keyword">in</span> (<span class="number">1</span>..<span class="number">4</span>).rev()&#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;看看循环几次&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="loop"><a href="#loop" class="headerlink" title="#loop"></a>#loop</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//这个loop有点意思，就是死循环</span></span><br><span class="line"><span class="keyword">loop</span>&#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;我好像会被一直执行下去!&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//或者是用break来跳出</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> i = <span class="number">0</span>;</span><br><span class="line"><span class="comment">//不出意外 x应该是被赋值为10</span></span><br><span class="line"><span class="keyword">let</span> x = <span class="keyword">loop</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> i &lt; <span class="number">10</span>&#123;</span><br><span class="line">        i+=<span class="number">1</span>;</span><br><span class="line">    &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">        <span class="keyword">break</span> i;<span class="comment">//这个break有点意思 居然和return 差不多能返回值.</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;<span class="comment">//这里&#123;&#125;里面应该是一个表达式</span></span><br></pre></td></tr></table></figure>
+<h4 id="While"><a href="#While" class="headerlink" title="#While"></a>#While</h4><figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//定义一个参数是可变类型int,返回值也是int的函数</span></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">while_demo_function</span></span>(<span class="keyword">mut</span> x:<span class="built_in">i32</span>) -&gt; <span class="built_in">i32</span>&#123;</span><br><span class="line">    <span class="keyword">while</span> x &lt; <span class="number">5</span>&#123;</span><br><span class="line">        <span class="comment">//如果传进来的x小于5就循环5次</span></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;我倒要看看，我被调用了多少次!&quot;</span>);</span><br><span class="line">        x = x + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//让其没有结尾，变成一个表达式</span></span><br><span class="line">    x <span class="comment">//返回x</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()&#123;</span><br><span class="line">    <span class="keyword">let</span> x = while_demo_function(<span class="number">0</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;x = &#123;&#125;&quot;</span>,x);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//运行结果：</span></span><br><span class="line">我倒要看看，我被调用了多少次!</span><br><span class="line">我倒要看看，我被调用了多少次!</span><br><span class="line">我倒要看看，我被调用了多少次!</span><br><span class="line">我倒要看看，我被调用了多少次!</span><br><span class="line">我倒要看看，我被调用了多少次!</span><br><span class="line">x = <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<h4 id="Switch"><a href="#Switch" class="headerlink" title="#Switch"></a>#Switch</h4>
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/19/rust%E5%AD%A6%E4%B9%A0-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fucklee">
+      <meta itemprop="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/19/rust%E5%AD%A6%E4%B9%A0-%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" class="post-title-link" itemprop="url">rust学习-数据类型</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-19 09:48:35" itemprop="dateCreated datePublished" datetime="2020-09-19T09:48:35+08:00">2020-09-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-19 14:12:02" itemprop="dateModified" datetime="2021-04-19T14:12:02+08:00">2021-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>rust中所有变量默认都是不可变的不能需改其值，如果需要让变量变的可更改，则需要添加<code>mut</code>关键字</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> variable = <span class="number">26</span>;</span><br><span class="line">variable = <span class="number">27</span>; <span class="comment">//❌写法,因为rust默认变量不可变。</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> variable = <span class="number">26</span>;</span><br><span class="line">variable = <span class="number">27</span>;<span class="comment">//✅ 正确的写法。</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="隐藏（Shadowing）"><a href="#隐藏（Shadowing）" class="headerlink" title="隐藏（Shadowing）"></a>隐藏（Shadowing）</h4><p>我们可以定义一个与之前变量同名的新变量，而新变量会 <strong>隐藏</strong> 之前的变量。Rustacean（rust程序员） 们称之为第一个变量被第二个 <strong>隐藏</strong> 了，这意味着使用这个变量时会看到第二个值。可以用相同变量名称来隐藏一个变量，以及重复使用 <code>let</code> 关键字来多次隐藏，如下所示：（<code>就是说变量可以同名，并且或覆盖上一层同名变量属性与值</code>）</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">let</span> x = x + <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">let</span> x = x * <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The value of x is: &#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="整型"><a href="#整型" class="headerlink" title="整型"></a>整型</h4><p><code>整数</code> 是一个没有小数部分的数字。我们在第二章使用过 <code>u32</code> 整数类型。该类型声明表明，它关联的值应该是一个占据 32 比特位的无符号整数（有符号整数类型以 <code>i</code> 开头而不是 <code>u</code>）。表格 3-1 展示了 Rust 内建的整数类型。在有符号列和无符号列中的每一个变体（例如，<code>i16</code>）都可以用来声明整数值的类型。</p>
+<p>表格 3-1: Rust 中的整型</p>
+<table>
+<thead>
+<tr>
+<th align="center">长度</th>
+<th align="center">有符号</th>
+<th align="center">无符号</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">8-bit（byte）1byte</td>
+<td align="center">i8</td>
+<td align="center">u8</td>
+</tr>
+<tr>
+<td align="center">16-bit（word）2byte</td>
+<td align="center">i16</td>
+<td align="center">u16</td>
+</tr>
+<tr>
+<td align="center">32-bit（int） 4byte</td>
+<td align="center">i32</td>
+<td align="center">u32</td>
+</tr>
+<tr>
+<td align="center">64-bit（int64）8byte</td>
+<td align="center">i64</td>
+<td align="center">u64</td>
+</tr>
+<tr>
+<td align="center">128-bit</td>
+<td align="center">i128</td>
+<td align="center">u128</td>
+</tr>
+<tr>
+<td align="center">arch(32、64int)</td>
+<td align="center">isize</td>
+<td align="center">usize</td>
+</tr>
+</tbody></table>
+<p>可以使用表格 3-2 中的任何一种形式编写数字字面值。注意除 byte 以外的所有数字字面值允许使用类型后缀，例如 <code>57u8</code>，同时也允许使用 <code>_</code> 做为分隔符以方便读数，例如<code>1_000</code>。</p>
+<p>表格 3-2: Rust 中的整型字面值</p>
+<table>
+<thead>
+<tr>
+<th align="center">数字字面值</th>
+<th align="center"><strong>例子</strong></th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Decimal (十进制)</td>
+<td align="center"><code>2020_09_20</code></td>
+</tr>
+<tr>
+<td align="center">Hex (十六进制)</td>
+<td align="center"><code>0xff</code></td>
+</tr>
+<tr>
+<td align="center">Octal (八进制)</td>
+<td align="center"><code>0o77</code></td>
+</tr>
+<tr>
+<td align="center">Binary (二进制)</td>
+<td align="center"><code>0b1111_0000</code></td>
+</tr>
+<tr>
+<td align="center">Byte (单字节字符)(仅限于<code>u8</code>)</td>
+<td align="center"><code>b&#39;A&#39;</code></td>
+</tr>
+</tbody></table>
+<h4 id="布尔型（bool）"><a href="#布尔型（bool）" class="headerlink" title="布尔型（bool）"></a>布尔型（bool）</h4><p>正如其他大部分编程语言一样，Rust 中的布尔类型有两个可能的值：<code>true</code> 和 <code>false</code>。Rust 中的布尔类型使用 <code>bool</code> 表示。例如：<code>rust中如果要显式的定义个变量，可以在变量名后加冒号：加类型</code></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> t = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">let</span> f: <span class="built_in">bool</span> = <span class="literal">false</span>; <span class="comment">// 显式指定类型注解</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="字符类型"><a href="#字符类型" class="headerlink" title="字符类型"></a>字符类型</h4><p>Rust 的 <code>char</code> 类型是语言中最原生的字母类型，如下代码展示了如何使用它。（注意 <code>char</code> 由单引号指定，不同于字符串使用双引号。）<code>Rust 的 char 类型的大小为四个字节(four bytes)，并代表了一个 Unicode 标量值（Unicode Scalar Value）</code></p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> c = <span class="string">&#x27;z&#x27;</span>;<span class="comment">//一个char 其实类似于u32 4个字节.</span></span><br><span class="line">    <span class="keyword">let</span> z = <span class="string">&#x27;ℤ&#x27;</span>;</span><br><span class="line">    <span class="keyword">let</span> heart_eyed_cat = &#x27;😻&#x27;;<span class="comment">//所以能输出这种表情</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<br/>
+
+<h4 id="复合类型"><a href="#复合类型" class="headerlink" title="复合类型"></a>复合类型</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">复合类型 可以将多个值组合成一个类型。Rust有两个原生的复合类型:元组 数组</span><br></pre></td></tr></table></figure>
+<p>一、元组<br>简介：我是一个将等多个其他类型的值 组合进一个复合类型的主要方式。<br>我的长度固定：一旦声明，其长度不会增大或缩小<br>ps:(那不是和数组是一样的概念么) –汇编角度：其实就是一个栈咯。  </p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> fuhe: (<span class="built_in">u8</span>,<span class="built_in">i32</span>,<span class="built_in">isize</span>,<span class="built_in">f64</span>) = (<span class="number">0x5</span>,<span class="number">2021_01_02</span>,<span class="number">6666666_66</span>,<span class="number">666666.6666</span>);</span><br><span class="line"><span class="keyword">let</span> (a,b,c,d) = fuhe;</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;单字节:&#123;&#125;&quot;</span>,a);</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;整型:&#123;&#125;&quot;</span>,b);</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;兼容整型:&#123;&#125;&quot;</span>,c);</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;浮点类型:&#123;&#125;&quot;</span>,d);</span><br><span class="line"></span><br><span class="line"><span class="comment">//元组数据类型访问 数据的方式，元组的变量名加. 来访问数据</span></span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;输出元祖下标:&#123;&#125;&quot;</span>,fuhe.<span class="number">0</span>);</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;输出元祖下标:&#123;&#125;&quot;</span>,fuhe.<span class="number">1</span>);</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;输出元祖下标:&#123;&#125;&quot;</span>,fuhe.<span class="number">2</span>);</span><br><span class="line"><span class="built_in">println!</span>(<span class="string">&quot;输出元祖下标:&#123;&#125;&quot;</span>,fuhe.<span class="number">3</span>);</span><br></pre></td></tr></table></figure>
+<br/>
+<br/>
+
+<p>二、数组<br>数组（array）。与元组不同，数组中的每个元素的类型必须相同。<br>Rust 中的数组与一些其他语言中的数组不同，<br>因为 Rust 中的数组是固定长度的：一旦声明，它们的长度不能增长或缩小。<br>Rust 中，数组中的值位于中括号内的逗号分隔的列表中。<br><br/> </p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//数组中的值位于中括号内的都好分隔列表中[x,x,x,x,x,x]</span></span><br><span class="line"><span class="keyword">let</span> Array_a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="comment">//字符串型数组</span></span><br><span class="line"><span class="keyword">let</span> Array_strings = [<span class="string">&quot;hello&quot;</span>,<span class="string">&quot;world&quot;</span>,<span class="string">&quot;May&quot;</span>,<span class="string">&quot;June&quot;</span>,<span class="string">&quot;December&quot;</span>];</span><br><span class="line"><span class="comment">//数组的声明，定义</span></span><br><span class="line"><span class="keyword">let</span> array_aaa: [<span class="built_in">i32</span>;<span class="number">5</span>]=[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="comment">//定义5个int类型的数组</span></span><br><span class="line"><span class="keyword">let</span> array_bbb = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="comment">//访问数组中的元素，其实和正常语言的访问数组元素方法是一样的，也是用下标的方式来访问元素.</span></span><br><span class="line">array_bbb[<span class="number">0</span>] <span class="comment">//这样就是代表下标为0的数组元素.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//思考数组越界会怎么样？</span></span><br><span class="line">数组越界 ，嘿嘿在其他语言中就被缓冲区溢出攻击了呀。</span><br><span class="line">但是rust的安全性真的是安全，直接编译器这一步他就不会让你编译过去，或者是<span class="keyword">try</span> catch掉。</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/09/19/rust%E5%AD%A6%E4%B9%A0-%E5%85%A5%E9%97%A8%E5%AE%89%E8%A3%85/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fucklee">
+      <meta itemprop="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/09/19/rust%E5%AD%A6%E4%B9%A0-%E5%85%A5%E9%97%A8%E5%AE%89%E8%A3%85/" class="post-title-link" itemprop="url">rust学习-入门安装</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-09-19 09:47:18" itemprop="dateCreated datePublished" datetime="2020-09-19T09:47:18+08:00">2020-09-19</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-19 14:11:59" itemprop="dateModified" datetime="2021-04-19T14:11:59+08:00">2021-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="0x00：安装"><a href="#0x00：安装" class="headerlink" title="#0x00：安装"></a>#0x00：安装</h3><p>rust的安装真的是我见过最简单的了，直接下载安装一步到位！</p>
+<p>用官方的rustup安装即可，<code>这是一个管理Rust版本和相关工具的命令行工具，需要联网</code></p>
+<h4 id="Linux或macOS上安装rustep"><a href="#Linux或macOS上安装rustep" class="headerlink" title="Linux或macOS上安装rustep"></a>Linux或macOS上安装rustep</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ curl --proto <span class="string">&#x27;=https&#x27;</span> --tlsv1.2 -sSf https://sh.rustup.rs | sh</span><br><span class="line">重启电脑</span><br><span class="line"></span><br><span class="line"><span class="comment">#查看版本</span></span><br><span class="line">$ rustup --version</span><br><span class="line"><span class="comment">#更新命令</span></span><br><span class="line">$ rustup update</span><br><span class="line"><span class="comment">#卸载命令</span></span><br><span class="line">$ rustup setl uninstall</span><br></pre></td></tr></table></figure>
+
+<h4 id="Windows上安装rustep"><a href="#Windows上安装rustep" class="headerlink" title="Windows上安装rustep"></a>Windows上安装rustep</h4><p>下载安装<a target="_blank" rel="noopener" href="https://static.rust-lang.org/rustup/dist/i686-pc-windows-gnu/rustup-init.exe">rustup-init.exe</a></p>
+<p>重启电脑。</p>
+<p><strong>自此，rust安装完成，好的接下来恭喜你成为rust的一员，恭喜你入坑🤣</strong></p>
+<h3 id="0x01：经典的-“你好，世界-”"><a href="#0x01：经典的-“你好，世界-”" class="headerlink" title="#0x01：经典的 “你好，世界!”"></a>#0x01：经典的 “你好，世界!”</h3><h4 id="创建项目目录"><a href="#创建项目目录" class="headerlink" title="创建项目目录"></a>创建项目目录</h4><p>首先创建一个存放 Rust 代码的目录。Rust 并不关心代码的存放位置，不过对于本书的练习和项目来说，我们建议你在 home 目录中创建 <em>projects</em> 目录，并将你的所有项目存放在这里。</p>
+<p>打开终端并输入如下命令创建 <em>projects</em> 目录，并在 <em>projects</em> 目录中为 “Hello, world!” 项目创建一个目录。</p>
+<p>对于 Linux、macOS 和 Windows PowerShell或（WIndows Teminal），输入：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ mkdir ~/projects</span><br><span class="line">$ <span class="built_in">cd</span> ~/projects</span><br><span class="line">$ mkdir hello_world</span><br><span class="line">$ <span class="built_in">cd</span> hello_world</span><br></pre></td></tr></table></figure>
+
+<h4 id="编写并运行Rust程序"><a href="#编写并运行Rust程序" class="headerlink" title="编写并运行Rust程序"></a>编写并运行Rust程序</h4><p>在当前目录下新建一个文本文件，命名为：main.rs，并且输入如下内容：</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>()&#123;</span><br><span class="line">  <span class="built_in">println!</span>(<span class="string">&quot;你好，世界！&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>保存完毕后在终端内，输入如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#macOS 或 Linux</span></span><br><span class="line">$ rustc main.rs</span><br><span class="line">$ ./main</span><br><span class="line">你好，世界！</span><br><span class="line"><span class="comment">#Windows上命令如下</span></span><br><span class="line">$./main.exe</span><br><span class="line">你好，世界！</span><br></pre></td></tr></table></figure>
+
+
+
+<p>👍👍👍恭喜，运行了第一个Rust程序。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/02/%E9%BB%98%E5%BE%80%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fucklee">
+      <meta itemprop="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/02/%E9%BB%98%E5%BE%80%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">iOS应用逆向与安全-默往聊天数据库解密</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-02 12:50:11" itemprop="dateCreated datePublished" datetime="2020-07-02T12:50:11+08:00">2020-07-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-19 14:12:02" itemprop="dateModified" datetime="2021-04-19T14:12:02+08:00">2021-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="盗墓准备：砸壳"><a href="#盗墓准备：砸壳" class="headerlink" title="盗墓准备：砸壳"></a>盗墓准备：砸壳</h2><p>用<code>frida-ios-dump</code>，命令行<code>python3 dump.py -p 2222 com.mostone.life0627</code>。具体过程略过……</p>
+<h2 id="分金定穴：分析"><a href="#分金定穴：分析" class="headerlink" title="分金定穴：分析"></a>分金定穴：分析</h2><p>搜索关键字<code>chatMessageV3.db</code>，定位到函数<code>-[ChatMessageBDManage creatDB]</code></p>
+<p><img src="%E9%BB%98%E5%BE%80%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200819133008260.png" alt="image-20200819133008260"></p>
+<p>获取userId，将userID转换成MD5</p>
+<p><img src="%E9%BB%98%E5%BE%80%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200819144724992.png" alt="image-20200819144724992"><br>将MD5与cipherkey拼接。</p>
+<p><img src="%E9%BB%98%E5%BE%80%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200819145016463.png" alt="image-20200819145016463"><br>.</p>
+<h2 id="起棺盗墓：frida验证"><a href="#起棺盗墓：frida验证" class="headerlink" title="起棺盗墓：frida验证"></a>起棺盗墓：frida验证</h2><p>POC：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * MosOne 默往聊天记录数据库密钥HOOK POC</span></span><br><span class="line"><span class="comment"> * by Lee</span></span><br><span class="line"><span class="comment"> * 专注逆向、网络安全</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/*setCipherKey 函数*/</span></span><br><span class="line">  onEnter: <span class="function"><span class="keyword">function</span> (<span class="params">log, args, state</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> myString = <span class="keyword">new</span> ObjC.Object(args[<span class="number">2</span>]);</span><br><span class="line">    <span class="keyword">var</span> NSData = ObjC.classes.NSData;</span><br><span class="line">    <span class="keyword">var</span> ssss = NSData.alloc().initWithData_(myString);</span><br><span class="line">    log(<span class="string">&quot;数据库密码长度：&quot;</span>+ssss.length());</span><br><span class="line">    log(<span class="string">&quot;数据库密码：&quot;</span>);</span><br><span class="line">    log(hexdump(ssss.bytes(),&#123;</span><br><span class="line">      length: ssss.length(),</span><br><span class="line">      header: <span class="literal">true</span>,</span><br><span class="line">      ansi: <span class="literal">true</span></span><br><span class="line">    &#125;));</span><br><span class="line">    log(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*返回值*/</span></span><br><span class="line">  onLeave: <span class="function"><span class="keyword">function</span> (<span class="params">log, retval, state</span>) </span>&#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>验证：</strong></p>
+<p><img src="%E9%BB%98%E5%BE%80%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200819151627348.png" alt="image-20200819151627348"><br>.</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/01/%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fucklee">
+      <meta itemprop="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/07/01/%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">iOS应用逆向与安全-蝙蝠聊天数据库解密</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-07-01 12:50:11" itemprop="dateCreated datePublished" datetime="2020-07-01T12:50:11+08:00">2020-07-01</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-19 14:12:02" itemprop="dateModified" datetime="2021-04-19T14:12:02+08:00">2021-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="需求："><a href="#需求：" class="headerlink" title="需求："></a>需求：</h3><ol>
+<li>数据库解密</li>
+<li>附件匹配关系</li>
+</ol>
+<h2 id="盗墓准备：砸壳"><a href="#盗墓准备：砸壳" class="headerlink" title="盗墓准备：砸壳"></a>盗墓准备：砸壳</h2><p>用庆总Frida框架的<code>frida-ios-dump</code>砸壳工具，其下载地址为<a target="_blank" rel="noopener" href="https://github.com/AloneMonkey/frida-ios-dump">https://github.com/AloneMonkey/frida-ios-dump</a><br>刚开始我砸壳并没有成功，后来发现是需要更新frida-ios-dump才可以砸成功，这与iOS版本或frida版本都有关系。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看进程ID 应用名 包名</span></span><br><span class="line">python3 dump.py -l</span><br><span class="line"><span class="comment">#对蝙蝠APP进行砸壳.</span></span><br><span class="line">iproxy 2222 22</span><br><span class="line">python3 dump.py -p 2222 com.woyue.batchat</span><br></pre></td></tr></table></figure>
+<p><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818133931373.png" alt="image-20200818133931373"><br><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818134413336.png" alt="image-20200818134413336"><br>.</p>
+<h2 id="分金定穴：分析"><a href="#分金定穴：分析" class="headerlink" title="分金定穴：分析"></a>分金定穴：分析</h2><p>砸了壳后直接提取出蝙蝠可执行文件，扔到<code>IDA</code>或者<code>Hopper</code>里面分析。</p>
+<h3 id="加密数据库定位"><a href="#加密数据库定位" class="headerlink" title="加密数据库定位"></a>加密数据库定位</h3><p>直接搜索加密数据库字符串交叉引用查看调用的函数<code>batChatBD</code> <code>FTSDB</code> <code>user_config</code></p>
+<h4 id="0x01-batChatBD"><a href="#0x01-batChatBD" class="headerlink" title="#0x01 batChatBD"></a>#0x01 batChatBD</h4><p><code>batChatBD</code>数据库 ，sqlcipher和aes都是固定密钥,这..🦇也太不安全了吧。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;* @class WBFDBManager *&#x2F;</span><br><span class="line">&#x2F;&#x2F;可以看到秘钥是固定的，是对字符串&quot;batChatMsgPwd1234560&quot; 进行加密处理，具体是进行AES加密最后Base64Encode下</span><br><span class="line">r0 &#x3D; [@&quot;batChatMsgPwd1234560&quot; encryptWithkey:@&quot;1&quot;];</span><br><span class="line">&#123;</span><br><span class="line">  &#x2F;&#x2F;AES加密  密钥：&quot;Batchat12345678#&quot;</span><br><span class="line">	CCCrypt(r19, 0x1, 0x1, [r0 UTF8String], 0x8, [@&quot;Batchat12345678#&quot; UTF8String], r23, r22, r20, r22 + 0x8 &amp; 0xfffffffffffffff8, &amp;var_58);</span><br><span class="line">	&#x2F;&#x2F;Base64编码</span><br><span class="line">	[r22 base64EncodedDataWithOptions:0x0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;PageSize大小是传入了一个地址，这里直接看不到内容，需要HOOK获取。</span><br><span class="line">[r23 setCipherKey:[[r0 dataUsingEncoding:0x1 allowLossyConversion:0x1] retain] andCipherPageSize:*(int32_t *)0x101760440];</span><br></pre></td></tr></table></figure>
+
+<p><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818141001693.png" alt="image-20200818141001693"><br><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818142301564.png" alt="image-20200818142301564"></p>
+<p>接下来进行HOOK的验证，最近比较喜欢用<code>frida</code>来HOOK，简单方便。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#frida-trace frida函数追踪命令行客户端</span></span><br><span class="line"><span class="comment">#-U 代表连接方式USB</span></span><br><span class="line"><span class="comment">#-f 需要HOOK的包名</span></span><br><span class="line"><span class="comment">#-m 代表需要HOOK的 OC方法名,*代表匹配所有。</span></span><br><span class="line">➜  iOSre frida-trace -U -f com.woyue.batchat -m <span class="string">&quot;-[WCTDatabase setCipherKey:andCipherPageSiz*]&quot;</span></span><br><span class="line"></span><br><span class="line">Instrumenting <span class="built_in">functions</span>...</span><br><span class="line">-[WCTDatabase setCipherKey:andCipherPageSize:]: Loaded handler at <span class="string">&quot;/Users/xxx/Documents/iOSre/__handlers__/__WCTDatabase_setCipherKey_andCi_d4cddb79.js&quot;</span></span><br><span class="line">Started tracing 1 <span class="keyword">function</span>. Press Ctrl+C to stop.</span><br><span class="line">           /* TID 0x403 */</span><br><span class="line">   701 ms  -[WCTDatabase setCipherKey:0x280b6f5d0 andCipherPageSize:0x800]</span><br><span class="line"></span><br><span class="line"><span class="comment">#可以看到hook到了WCTDatabase类的 setCipherKey:andCipherPageSize方法，其中密钥是一个NSData对象的地址，所以这里需要对js文件进行修改才能正确输出其十六进制或字符串，而页大小为0x800，也就是2048的十六进制。</span></span><br></pre></td></tr></table></figure>
+<p><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818143621733.png" alt="image-20200818143621733"></p>
+<p>修改后的<code>__WCTDatabase_setCipherKey_andCi_d4cddb79.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">onEnter: <span class="function"><span class="keyword">function</span> (<span class="params">log, args, state</span>) </span>&#123;</span><br><span class="line">    log(<span class="string">&#x27;-[WCTDatabase setCipherKey:&#x27;</span> + args[<span class="number">2</span>] + <span class="string">&#x27; andCipherPageSize:&#x27;</span> + args[<span class="number">3</span>] + <span class="string">&#x27;]&#x27;</span>);</span><br><span class="line">    <span class="keyword">var</span> myString = <span class="keyword">new</span> ObjC.Object(args[<span class="number">2</span>]);</span><br><span class="line">    <span class="keyword">var</span> NSData = ObjC.classes.NSData;</span><br><span class="line">    <span class="keyword">var</span> ssss = NSData.alloc().initWithData_(myString);</span><br><span class="line">    log(<span class="string">&quot;数据库密码长度：&quot;</span>+ssss.length());</span><br><span class="line">    log(<span class="string">&quot;数据库密码：&quot;</span>);</span><br><span class="line">    log(hexdump(ssss.bytes(),&#123;</span><br><span class="line">      length: ssss.length(),</span><br><span class="line">      header: <span class="literal">true</span>,</span><br><span class="line">      ansi: <span class="literal">true</span></span><br><span class="line">    &#125;));</span><br><span class="line">    log(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+<p><code>batChatBD</code>加密数据库   密钥：<code>DKrF2tB3U5vi39kVODmsbY0UW5Scn8rW</code>  页大小：<code>2048</code><br><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818144913788.png" alt="image-20200818144913788"></p>
+<h4 id="0x1-FTSDB"><a href="#0x1-FTSDB" class="headerlink" title="#0x1 FTSDB"></a>#0x1 FTSDB</h4><p>和batChatBD的方法一样，也是字符串搜索<code>FTSDB</code>关键字，然后再查看交叉引用关系，定位到其创建数据库的函数。</p>
+<p><code>这里的设置密钥函数和batChatBD的不一样，这里没有设置页大小，也就是用了默认的页大小</code>，我通过查看WCDB源码发现，默认的页大小为4096，<code>WCDB是腾讯开源的一个高效、完整、易用的移动数据库框架，基于SQLCipher，支持 iOS、macOS 和 Android</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r0 &#x3D; [@&quot;FTSDBPWD&quot; encryptWithkey:@&quot;2&quot;];</span><br><span class="line">r25 &#x3D; [[r0 dataUsingEncoding:0x1 allowLossyConversion:0x1] retain];</span><br><span class="line">[r23 setCipherKey:r25];</span><br></pre></td></tr></table></figure>
+<p><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818145807201.png" alt="image-20200818145807201"><br>.</p>
+<h4 id="0x2-user-config"><a href="#0x2-user-config" class="headerlink" title="#0x2 user_config"></a>#0x2 user_config</h4><p>读取<code>keychain</code>中的<code>WCDB.BATUSERCONFIGKEY</code>字段内容设为sqlcipher密钥，和FTSDB一样也是默认页大小，4096.</p>
+<p>如果keychain中没有WCDB.BATUSERCONFIGKEY字段则随机生成64位的十六进制作为sqlcipher密钥，并存入keychain当中。</p>
+<p><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818153437735.png" alt="image-20200818153437735"></p>
+<p><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818153643131.png" alt="image-20200818153643131"></p>
+<h4 id="0x3-HOOK验证-FTSDB-和-user-config数据库密钥"><a href="#0x3-HOOK验证-FTSDB-和-user-config数据库密钥" class="headerlink" title="#0x3 HOOK验证 FTSDB 和 user_config数据库密钥"></a>#0x3 HOOK验证 FTSDB 和 user_config数据库密钥</h4><p>因为FTSDB和user_config数据库设置密钥方法是同一个，都是用的<code>-[WCTDatabase setCipherKey:]</code> 默认页大小。所以放到这里来统一进行frida 的hook验证。</p>
+<p>启动Frida hook：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  iOSre frida-trace -U -f com.woyue.batchat -m <span class="string">&quot;-[WCTDatabase setCipherKey:]&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>修改对应<code>__WCTDatabase_setCipherKey__.js</code>JS文件内容</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">onEnter: <span class="function"><span class="keyword">function</span> (<span class="params">log, args, state</span>) </span>&#123;</span><br><span class="line">    log(<span class="string">&#x27;-[WCTDatabase setCipherKey:&#x27;</span> + args[<span class="number">2</span>] + <span class="string">&#x27;]&#x27;</span>);</span><br><span class="line">    <span class="keyword">var</span> myString = <span class="keyword">new</span> ObjC.Object(args[<span class="number">2</span>]);</span><br><span class="line">    <span class="keyword">var</span> NSData = ObjC.classes.NSData;</span><br><span class="line">    <span class="keyword">var</span> ssss = NSData.alloc().initWithData_(myString);</span><br><span class="line">    log(<span class="string">&quot;数据库密码长度：&quot;</span>+ssss.length());</span><br><span class="line">    log(<span class="string">&quot;数据库密码：&quot;</span>);</span><br><span class="line">    log(hexdump(ssss.bytes(),&#123;</span><br><span class="line">      length: ssss.length(),</span><br><span class="line">      header: <span class="literal">true</span>,</span><br><span class="line">      ansi: <span class="literal">true</span></span><br><span class="line">    &#125;));</span><br><span class="line">    log(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure>
+
+<p>再次启动frida hook验证</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  iOSre frida-trace -U -f com.woyue.batchat -m <span class="string">&quot;-[WCTDatabase setCipherKey:]&quot;</span></span><br></pre></td></tr></table></figure>
+<p><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818154550865.png" alt="image-20200818154550865"><br>.</p>
+<p>keychain相关的知识，这里不多说了自行百度，或者对<a target="_blank" rel="noopener" href="https://github.com/ptoomey3/Keychain-Dumper">https://github.com/ptoomey3/Keychain-Dumper</a> 项目进行学习研究。<br><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818154803167.png" alt="image-20200818154803167"><br>.</p>
+<h2 id="起棺盗墓：附件匹配"><a href="#起棺盗墓：附件匹配" class="headerlink" title="起棺盗墓：附件匹配"></a>起棺盗墓：附件匹配</h2><p>这其中定位的过程花了很长时间，是从一个函数一步步追踪验证到最后直接HOOK到参数为附件的绝对路径的函数，然后结果分析用的是MD5算法，将附件URL地址MD5加密成附件名 + 后缀。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-[WBFChatFileCacheManager chatFilePath:placeFileData:progress:completion:];</span><br><span class="line">int sub_1000d5dd8();</span><br><span class="line">CC_MD5();</span><br></pre></td></tr></table></figure>
+<p><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818162135910.png" alt="image-20200818162135910"><br>.</p>
+<h4 id="0x00-CC-MD5-js脚本"><a href="#0x00-CC-MD5-js脚本" class="headerlink" title="#0x00 CC_MD5.js脚本"></a>#0x00 CC_MD5.js脚本</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * CC_MD5 HOOK脚本</span></span><br><span class="line"><span class="comment"> * by: Lee</span></span><br><span class="line"><span class="comment"> * 专注逆向、网络安全</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">&#123;</span><br><span class="line">  <span class="comment">/*函数参数*/</span></span><br><span class="line">  onEnter: <span class="function"><span class="keyword">function</span> (<span class="params">log, args, state</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//将md5参数转换成字符串并打印</span></span><br><span class="line">    <span class="keyword">var</span> md5_data = args[<span class="number">0</span>].readUtf8String();</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;MD5 - 参数值:&quot;</span>);</span><br><span class="line">    <span class="built_in">console</span>.error(md5_data);</span><br><span class="line">  &#125;,</span><br><span class="line"></span><br><span class="line">  <span class="comment">/*函数返回值*/</span></span><br><span class="line">  onLeave: <span class="function"><span class="keyword">function</span> (<span class="params">log, retval, state</span>) </span>&#123;</span><br><span class="line">    <span class="comment">//将md5返回值转码为32位字符串并打印</span></span><br><span class="line">    <span class="keyword">var</span> md5_digest = hexdump(retval , &#123;<span class="attr">length</span>: <span class="number">16</span>&#125;)</span><br><span class="line">    <span class="keyword">var</span> hexified = <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="keyword">var</span> raw_array = md5_digest.split(<span class="string">&quot;\n&quot;</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> a = <span class="number">0</span>; a &lt; raw_array.length; a++) &#123;</span><br><span class="line">      <span class="keyword">var</span> line_array = raw_array[a].split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">var</span> b = <span class="number">1</span>; b &lt; line_array.length - <span class="number">1</span> ; b++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (line_array[b].length === <span class="number">2</span>) &#123;</span><br><span class="line">          hexified += line_array[b];</span><br><span class="line">          hexified = hexified.trim()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&quot;MD5 - 返回值:&quot;</span>);</span><br><span class="line">    <span class="built_in">console</span>.error(hexified + <span class="string">&quot;\n&quot;</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="0x01-验证"><a href="#0x01-验证" class="headerlink" title="#0x01 验证"></a>#0x01 验证</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">➜  iOSre frida-trace -U -f com.woyue.batchat -i <span class="string">&quot;CC_MD5&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818162525337.png" alt="image-20200818162525337"><br>.</p>
+<p><img src="%E8%9D%99%E8%9D%A0%E8%81%8A%E5%A4%A9%E9%80%86%E5%90%91%E5%88%86%E6%9E%90/image-20200818162624969.png" alt="image-20200818162624969"></p>
+<p>谢谢耐心看完，不懂的随时问我。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/06/29/iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8-WhatsApp%E5%88%86%E6%9E%90/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fucklee">
+      <meta itemprop="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/06/29/iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8-WhatsApp%E5%88%86%E6%9E%90/" class="post-title-link" itemprop="url">iOS应用逆向与安全-WhatsApp防撤回开发</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-06-29 12:32:31" itemprop="dateCreated datePublished" datetime="2020-06-29T12:32:31+08:00">2020-06-29</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-19 14:12:02" itemprop="dateModified" datetime="2021-04-19T14:12:02+08:00">2021-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <blockquote>
+<p>庆总的《iOS应用逆向与安全》看得也差不多了，根据最后一张，自己也分析下最新版本的WhatsApp软件的分析。</p>
+<p>版本：2.20.51</p>
+</blockquote>
+<h2 id="盗墓准备：砸壳"><a href="#盗墓准备：砸壳" class="headerlink" title="盗墓准备：砸壳"></a>盗墓准备：砸壳</h2><p>哈哈😸，最近可能鬼吹灯看多了，很喜欢吧逆向流程分为，盗墓准备-分经定穴-起尸开馆-盗墓。</p>
+<p>砸壳的方式现在真的五花八门，有各种工具来砸壳，其中比较好用有名的是用庆总用Frida框架写的<code>frida-ios-dump</code>，其下载地址为<a target="_blank" rel="noopener" href="https://github.com/AloneMonkey/frida-ios-dump">https://github.com/AloneMonkey/frida-ios-dump</a>.</p>
+<p>还有Lakr Aream大佬写的VS Code插件<code>iOSre Extension</code>，该插件包含很多功能，可以列出所有APP，可以动态调试、可以一键脱壳、加载文件系统、下载上传文件。具体使用的话，在VS Code中直接安装该插件即可。其github地址为<a target="_blank" rel="noopener" href="https://github.com/Co2333/iOSreExtension">https://github.com/Co2333/iOSreExtension</a> </p>
+<p>我个人的话比较喜欢<code>CrackXI</code>，是在手机上的越狱应用，在Cydia中添加蚂蚁源，安装CrackXI后打开I在其AppList界面点击需要砸壳的APP，然后点击YES,Full IPA开始砸壳，真的很简单好用。</p>
+<ul>
+<li>frida-ios-dump <a target="_blank" rel="noopener" href="https://github.com/AloneMonkey/frida-ios-dump">https://github.com/AloneMonkey/frida-ios-dump</a> 作者：庆总</li>
+<li>iOSre Extension <a target="_blank" rel="noopener" href="https://github.com/Co2333/iOSreExtension">https://github.com/Co2333/iOSreExtension</a> 作者：Lakr Aream</li>
+<li>CrackerXI <a target="_blank" rel="noopener" href="https://apt.cydia.love/misc">https://apt.cydia.love/misc</a> 作者：蚂蚁源</li>
+</ul>
+<p><code>导出头文件：</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将WhatsApp程序的头文件导出到Headers文件中.</span></span><br><span class="line">class-dump WhatsApp.app -A -H -o ./Headers</span><br></pre></td></tr></table></figure>
+
+<p><code>还原符号表:</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先在Github上下载restore-symbol</span></span><br><span class="line">git <span class="built_in">clone</span> --recursive https://github.com/tobefuturer/restore-symbol.git</span><br><span class="line"><span class="built_in">cd</span> restore-symbol</span><br><span class="line">make</span><br><span class="line"><span class="comment">#然后链接到系统Bin，方便使用</span></span><br><span class="line"><span class="built_in">cd</span> /usr/<span class="built_in">local</span>/bin</span><br><span class="line">ln /User/lee/restore-symbol/restore-symbol restore-symbol</span><br><span class="line"><span class="comment">#拷贝可执行文件、瘦身、恢复符号表</span></span><br><span class="line"><span class="built_in">cd</span> /User/lee/Desktop/whatsapp</span><br><span class="line">cp WhatsApp.app/whatsApp ./whatsApp_decrypt &amp;&amp; chmod 777 whatsApp_decrypt</span><br><span class="line">lipo whatsApp_decrypt -thin arm64 -o whatsApp &amp;&amp; chmod 777 whatsApp</span><br><span class="line">restore-symbol WhatsApp -o WhatsApp_With_Symbol</span><br><span class="line"><span class="comment">#然后替换WhatsApp.app里面的可执行文件,再用mobiledevice 安装</span></span><br><span class="line">mobiledevice WhatsApp.app</span><br></pre></td></tr></table></figure>
+<p><img src="iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8-WhatsApp%E5%88%86%E6%9E%90/%E6%88%AA%E5%B1%8F2020-06-29%E4%B8%8B%E5%8D%8810.36.40.png" alt="截屏2020-06-29下午10.36.40"><br>.</p>
+<h2 id="分金定穴：分析"><a href="#分金定穴：分析" class="headerlink" title="分金定穴：分析"></a>分金定穴：分析</h2><h4 id="Reveal-查看UI层"><a href="#Reveal-查看UI层" class="headerlink" title="Reveal 查看UI层"></a>Reveal 查看UI层</h4><p>下载最新的Reveal，我这边目前最新的Reveal版本是26，然后配置下RevealServer，具体可以参考这一篇文章。</p>
+<p><a target="_blank" rel="noopener" href="https://meilbn.com/2019/08/23/install-reveal2loader-on-jailbreak-device-ios12/#0x03_%E6%9B%B4%E6%96%B0_RevealServer-framework">https://meilbn.com/2019/08/23/install-reveal2loader-on-jailbreak-device-ios12/#0x03_%E6%9B%B4%E6%96%B0_RevealServer-framework</a></p>
+<p>启动WhatsApp并打开聊天对话框，然后用Reveal查看WhatsApp的消息控件，得知是WAMessaegContainerView类。<br><img src="iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8-WhatsApp%E5%88%86%E6%9E%90/image-20200705213020250.png" alt="image-20200705213020250"></p>
+<h4 id="VSCode-查找切入点"><a href="#VSCode-查找切入点" class="headerlink" title="VSCode 查找切入点"></a>VSCode 查找切入点</h4><p>VSCode打开用class-dump出来的WhatsApp头文件，搜索<code>WAMessageContainerView</code>头文件然后找到可疑的方法，由于我们是要做长按消息然后弹出框里面加收藏的功能，所以找到一个可疑的方法<code>handleLongPressAtPoint</code>,字面意思就是长按</p>
+<p><img src="iOS%E5%BA%94%E7%94%A8%E9%80%86%E5%90%91%E4%B8%8E%E5%AE%89%E5%85%A8-WhatsApp%E5%88%86%E6%9E%90/image-20200705214346733.png" alt="image-20200705214346733"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/06/lldb%E8%B0%83%E8%AF%95%E5%A4%A7%E5%85%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fucklee">
+      <meta itemprop="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/06/lldb%E8%B0%83%E8%AF%95%E5%A4%A7%E5%85%A8/" class="post-title-link" itemprop="url">lldb调试大全</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-06 17:31:34" itemprop="dateCreated datePublished" datetime="2020-02-06T17:31:34+08:00">2020-02-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-19 14:12:02" itemprop="dateModified" datetime="2021-04-19T14:12:02+08:00">2021-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>接上一篇,《iOS13 动态调试配置之debugserver》,配置好debugserver ,接下来就可以用lldb来动态调试应用。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/02/06/iOS13-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE%E4%B9%8Bdebugserver/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fucklee">
+      <meta itemprop="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/02/06/iOS13-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE%E4%B9%8Bdebugserver/" class="post-title-link" itemprop="url">iOS13 动态调试配置之debugserver</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-02-06 17:30:34" itemprop="dateCreated datePublished" datetime="2020-02-06T17:30:34+08:00">2020-02-06</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-19 14:12:02" itemprop="dateModified" datetime="2021-04-19T14:12:02+08:00">2021-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>疫情期间家里没网🤣，好久没更新了，刚回到杭州给自己iOS逆向充充电。[武汉加油💪]</p>
+<hr>
+<p>iOS逆向里面比较重要的几项技能：动态调试、静态分析、HOOK关键函数、重签名</p>
+<p>先来讲下动态调试，iOS动态调试需要一个服务端和客户端程序，服务端程序在手机上监听要动态调试程序的进程ID或是程序名，客户端程序在Mac OS系统上运行。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">服务端程序:debugserver</span><br><span class="line">客户端程序:lldb</span><br><span class="line"><span class="comment">#这两个程序不用额外的去外网下载，只要你的Mac电脑有装XCode，并且进行真机调试过（真机调试一般可以在淘宝买UDID开发者证书，就是和你手机UDID绑定的证书那么你就可以在你手机上安装开发你的APP|土豪（开发者账号））</span></span><br></pre></td></tr></table></figure>
+
+<p>只要你手机进行真机调试过，那么在你手机的这个目录下就会有debugserver</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">/Developer/usr/<span class="built_in">bin</span>/debugserver</span><br><span class="line"><span class="comment">#不过这个debugserver 默认只能调试自己开发的APP，我们逆向当然是要逆别人的程序，所以想要debugserver能调试三方APP，需要进行一些修改，下面就是修改的一些重点。</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="0x00-配置debugserver-赋予权限"><a href="#0x00-配置debugserver-赋予权限" class="headerlink" title="#0x00 配置debugserver 赋予权限"></a>#0x00 配置debugserver 赋予权限</h3><p>debugserver默认只能调试自己开发的应用，调试其他应用会抛异常<code>unable to start the exception thread</code>。默认的debugserver缺少<code>task_for_pid()</code>权限，因此需要给debugserver赋予task_for_pid权限。——这是网上摘抄的话</p>
+<p>我发现网上配置debugserver的方法已经过时，不适用iOS13系统，导致debugserver还是无法调试三方APP，所以按照如下方法进行。</p>
+<p><strong>1、 新建一个文件名为ent.xml</strong></p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">plist</span> <span class="meta-keyword">PUBLIC</span> <span class="meta-string">&quot;-//Apple//DTD PLIST 1.0//EN&quot;</span> <span class="meta-string">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">plist</span> <span class="attr">version</span>=<span class="string">&quot;1.0&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dict</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.backboardd.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.backboardd.launchapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.diagnosticd.diagnostic<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.frontboard.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.frontboard.launchapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.security.network.client<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.security.network.server<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.springboard.debugapplications<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>com.apple.system-task-ports<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>get-task-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>platform-application<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>run-unsigned-code<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">key</span>&gt;</span>task_for_pid-allow<span class="tag">&lt;/<span class="name">key</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">true</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dict</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">plist</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>2、用ldid对debugserver签名 赋予权限</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ldid -Sxml全路径 debugserver全路径`</span><br><span class="line">例如：`ldid -Sent.xml debugserver</span><br></pre></td></tr></table></figure>
+
+<p>这里要SSH连入iPhone手机执行命令：需要越狱您的iPhone,不会的请去看 <a target="_blank" rel="noopener" href="https://mrmad.com.tw/category/jb/jailbreak">疯先生越狱</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#开启端口转发,数据线连SSH</span></span><br><span class="line">iproxy 2222 44        <span class="comment">#默认用Checkra1n越狱的端口号为44，其余的默认为22</span></span><br><span class="line"><span class="comment">#连入iPhone SSH</span></span><br><span class="line">ssh root@localhost -p 2222 <span class="comment">#iPhone默认ssh密码,alpine</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#切换到debugserver存在的目录</span></span><br><span class="line">iPhone:~ root<span class="comment"># cd /Developer/usr/bin/</span></span><br><span class="line">iPhone:/Developer/usr/bin root<span class="comment"># ls</span></span><br><span class="line">DTDeviceArbitration*  ScreenShotr*  axauditd*  debugserver*</span><br><span class="line"></span><br><span class="line"><span class="comment">#新建ent.xml文件</span></span><br><span class="line">iPhone:/Developer/usr/bin root<span class="comment"># vim ent.xml   #将1、里面的ent.xml内容复制进去，并且保存</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#最后ldid赋予权限</span></span><br><span class="line">iPhone:/Developer/usr/bin root<span class="comment"># ldid -Sent.xml debugserver</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#拷贝到系统目录</span></span><br><span class="line">iPhone:/Developer/usr/bin root<span class="comment"># copy ./debugserver /usr/bin</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="iOS13-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE%E4%B9%8Bdebugserver/%E6%88%AA%E5%B1%8F2020-02-06%E4%B8%8B%E5%8D%887.52.51.png" alt="截屏2020-02-06下午7.52.51"></p>
+<h3 id="0x01-验证debugserver-进行动态调试"><a href="#0x01-验证debugserver-进行动态调试" class="headerlink" title="#0x01 验证debugserver 进行动态调试"></a>#0x01 验证debugserver 进行动态调试</h3><p>配置好iPhone端的debugserver后，就可以在Mac电脑上用lldb远程进行动态调试了<strong>lldb调试大全后续会讲</strong>，此次注重debugserver的配置，lldb一笔带，只要知道lldb是Mac上的客户端用来动态调试。</p>
+<p>以调试Sugram 聊天软件为例</p>
+<p>手机端：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#查看Sugram的进程ID</span></span><br><span class="line">iPhone:~ root<span class="comment"># ps aux|grep &quot;Sugram&quot;</span></span><br><span class="line">mobile          6542   0.0  2.9  5055392  59136   ??  Ss    8:38PM   0:00.51 /var/containers/Bundle/Application/12CA134A-E92A-4F35-BEAA-542F84A0A39F/Sugram.app/Sugram</span><br><span class="line"></span><br><span class="line"><span class="comment">#注入方式对Sugram进行监听</span></span><br><span class="line">iPhone:~ root<span class="comment"># debugserver 127.0.0.1:1234 --attach 6542</span></span><br></pre></td></tr></table></figure>
+
+<p>这时候被注入监听的那个APP就会进入卡死状态，因为debugserver已经对Sugram进行调试状态。</p>
+<p>电脑端：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#先用iProxy 转发debugserver监听的端口</span></span><br><span class="line">iproxy 1234 1234</span><br><span class="line"><span class="comment">#进入lldb 进行远程调试</span></span><br><span class="line">lldb</span><br><span class="line">(lldb) process connect connect://localhost:1234</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="0x02-成功！"><a href="#0x02-成功！" class="headerlink" title="#0x02 成功！"></a>#0x02 成功！</h3><p>出现如下画面说明debugserver 配置正确，lldb也可以进行动态调试了。😁😁  –专注逆向、网络安全 Lee</p>
+<p><img src="iOS13-%E5%8A%A8%E6%80%81%E8%B0%83%E8%AF%95%E9%85%8D%E7%BD%AE%E4%B9%8Bdebugserver/%E6%88%AA%E5%B1%8F2020-02-06%E4%B8%8B%E5%8D%888.48.39.png" alt="截屏2020-02-06下午8.48.39"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+  
+  
+  
+
+
+  
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fucklee</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

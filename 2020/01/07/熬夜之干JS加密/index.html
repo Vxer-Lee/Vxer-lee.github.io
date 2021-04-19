@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.14.0/css/all.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"8.0.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+
+  <meta name="description" content="朋友发了这么一段东西，然后和我说熬夜也要把它解出来  我：？？？？？？？？ 没错经过一番搜索后发现这是一段加密的JS代码。 (!![]+[])[!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+(![]+[])[+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!">
+<meta property="og:type" content="article">
+<meta property="og:title" content="熬夜之干JS加密">
+<meta property="og:url" content="http://example.com/2020/01/07/%E7%86%AC%E5%A4%9C%E4%B9%8B%E5%B9%B2JS%E5%8A%A0%E5%AF%86/index.html">
+<meta property="og:site_name" content="Lee&#39;s Blog">
+<meta property="og:description" content="朋友发了这么一段东西，然后和我说熬夜也要把它解出来  我：？？？？？？？？ 没错经过一番搜索后发现这是一段加密的JS代码。 (!![]+[])[!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+(![]+[])[+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2020/01/07/%E7%86%AC%E5%A4%9C%E4%B9%8B%E5%B9%B2JS%E5%8A%A0%E5%AF%86/assets/image-20190803024505492.png">
+<meta property="og:image" content="http://example.com/2020/01/07/%E7%86%AC%E5%A4%9C%E4%B9%8B%E5%B9%B2JS%E5%8A%A0%E5%AF%86/assets/image-20190803024531220.png">
+<meta property="og:image" content="http://example.com/2020/01/07/%E7%86%AC%E5%A4%9C%E4%B9%8B%E5%B9%B2JS%E5%8A%A0%E5%AF%86/assets/image-20190803024927010.png">
+<meta property="og:image" content="http://example.com/2020/01/07/%E7%86%AC%E5%A4%9C%E4%B9%8B%E5%B9%B2JS%E5%8A%A0%E5%AF%86/%E7%86%AC%E5%A4%9C%E4%B9%8B%E5%B9%B2JS%E5%8A%A0%E5%AF%86/ssdd.png">
+<meta property="article:published_time" content="2020-01-07T03:59:36.000Z">
+<meta property="article:modified_time" content="2021-04-19T06:12:02.019Z">
+<meta property="article:author" content="fucklee">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/01/07/%E7%86%AC%E5%A4%9C%E4%B9%8B%E5%B9%B2JS%E5%8A%A0%E5%AF%86/assets/image-20190803024505492.png">
+
+
+<link rel="canonical" href="http://example.com/2020/01/07/%E7%86%AC%E5%A4%9C%E4%B9%8B%E5%B9%B2JS%E5%8A%A0%E5%AF%86/">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>熬夜之干JS加密 | Lee's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">Lee's Blog</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">专注逆向、网络安全</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">0</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">15</span></a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>日程表</a>
+
+  </li>
+        <li class="menu-item menu-item-sitemap">
+
+    <a href="/sitemap.xml" rel="section"><i class="fa fa-sitemap fa-fw"></i>站点地图</a>
+
+  </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404/" rel="section"><i class="fa fa-heartbeat fa-fw"></i>公益 404</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <section class="post-toc-wrap sidebar-panel">
+          <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%98%E5%85%88%E7%BA%A7%E4%BB%8E%E9%AB%98%E5%88%B0%E4%BD%8E%EF%BC%9A"><span class="nav-number">1.</span> <span class="nav-text">优先级从高到低：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81%E6%8B%86%E5%88%86"><span class="nav-number">2.</span> <span class="nav-text">代码拆分</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B%E7%AC%AC%E4%B8%80%E6%AE%B5"><span class="nav-number">3.</span> <span class="nav-text">举例第一段:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BE%E4%BE%8B%E7%AC%AC%E4%BA%8C%E6%AE%B5%EF%BC%9A"><span class="nav-number">4.</span> <span class="nav-text">举例第二段：</span></a></li></ol></div>
+      </section>
+      <!--/noindex-->
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fucklee"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fucklee</p>
+  <div class="site-description" itemprop="description">喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">15</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="cc-license animated" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </section>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+      
+
+      
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/01/07/%E7%86%AC%E5%A4%9C%E4%B9%8B%E5%B9%B2JS%E5%8A%A0%E5%AF%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fucklee">
+      <meta itemprop="description" content="喜欢逆向破解，漏洞挖掘、Web渗透，梦想着成为Mr. Robot">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Lee's Blog">
+    </span>
+
+    
+    
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          熬夜之干JS加密
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2020-01-07 11:59:36" itemprop="dateCreated datePublished" datetime="2020-01-07T11:59:36+08:00">2020-01-07</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-04-19 14:12:02" itemprop="dateModified" datetime="2021-04-19T14:12:02+08:00">2021-04-19</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>朋友发了这么一段东西，然后和我说熬夜也要把它解出来  我：？？？？？？？？</p>
+<p>没错经过一番搜索后发现这是一段加密的JS代码。</p>
+<p>(!![]+[])[!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+(![]+[])[+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+(!![]+[])[!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+(![]+[])[+!+[]]+(![]+[])[+[]]+[!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]]+[+!+[]]+(!![]+[])[!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]+(![]+[])[+!+[]]+([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(![]+[])[!+[]+!+[]]]+[])[!+[]+!+[]+!+[]]+(!![]+[])[!+[]+!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+(![]+[])[+!+[]]+([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]+[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]+([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]</p>
+<p>这是一段Js代码，利用js引擎语法 运算符 优先级等特性，让代码看起来特别难懂复杂。</p>
+<blockquote>
+<p>首先要运用到的第一个知识就是js运算符的优先级，因为这么长一段运算看的人眼花，我们必须得先根据优先级分成n小段，然后再各个击破。优先级的排列如下表：</p>
+</blockquote>
+<p>　　</p>
+<h4 id="优先级从高到低："><a href="#优先级从高到低：" class="headerlink" title="优先级从高到低："></a>优先级从高到低：</h4><table>
+<thead>
+<tr>
+<th>运算符</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>.[ ] ( )</td>
+<td>字段访问、数组索引、函数调用和表达式分组</td>
+</tr>
+<tr>
+<td>++ – - ~ ! delete new typeof void</td>
+<td>一元运算符、返回数据类型、对象创建、未定义的值</td>
+</tr>
+<tr>
+<td>* / %</td>
+<td>相乘、相除、求余数</td>
+</tr>
+<tr>
+<td>+ - +</td>
+<td>相加、相减、字符串串联</td>
+</tr>
+<tr>
+<td>&lt;&lt; &gt;&gt; &gt;&gt;&gt;</td>
+<td>移位</td>
+</tr>
+<tr>
+<td>&lt; &lt;= &gt; &gt;= instanceof</td>
+<td>小于、小于或等于、大于、大于或等于、是否为特定类的实例</td>
+</tr>
+<tr>
+<td>== != === !==</td>
+<td>相等、不相等、全等，不全等</td>
+</tr>
+<tr>
+<td>&amp;</td>
+<td>按位“与”</td>
+</tr>
+<tr>
+<td>^</td>
+<td>按位“异或”</td>
+</tr>
+<tr>
+<td>|</td>
+<td>按位“或”</td>
+</tr>
+<tr>
+<td>&amp;&amp;</td>
+<td>逻辑“与”</td>
+</tr>
+<tr>
+<td>||</td>
+<td>逻辑“或”</td>
+</tr>
+<tr>
+<td>?:</td>
+<td>条件运算</td>
+</tr>
+<tr>
+<td>= <em>OP</em>=</td>
+<td>赋值、赋值运算（如 += 和 &amp;=）</td>
+</tr>
+<tr>
+<td>,</td>
+<td>多个计算</td>
+</tr>
+</tbody></table>
+<h4 id="代码拆分"><a href="#代码拆分" class="headerlink" title="代码拆分"></a>代码拆分</h4><p>根据（）和[] 代码一共可以拆分成28段。</p>
+<p>其实这28段代表的就是 e9a699e6b8af3731e78bace7ab8b 个字节</p>
+<h4 id="举例第一段"><a href="#举例第一段" class="headerlink" title="举例第一段:"></a>举例第一段:</h4><p>(!![]+[])[!+[]+!+[]+!+[]]        把() 和 []分开来就是</p>
+<p>(!![]+[]).       等于  true</p>
+<p>[!+[]+!+[]+!+[]]   等于 3 </p>
+<p>然后合起来就是”true”[3] 意思就是 取”true”这个字符串 从0开始到第3个字符, 也就是e</p>
+<p><img src="assets/image-20190803024505492.png" alt="image-20190803024505492"></p>
+<p><img src="assets/image-20190803024531220.png" alt="image-20190803024531220"></p>
+<h4 id="举例第二段："><a href="#举例第二段：" class="headerlink" title="举例第二段："></a>举例第二段：</h4><p>第二段则是 !+[] 代表1    一共是 9个1相加</p>
+<p>!+[]    !+[]    !+[]   !+[]   !+[]   !+[]   !+[]   !+[]   !+[]  </p>
+<p><img src="assets/image-20190803024927010.png" alt="image-20190803024927010"></p>
+<p><strong>所以第一段和第二段加起来就是e9,也就是那段e9a699e6b8af3731e78bace7ab8b 前两个字</strong></p>
+<p><strong>后面的段以此类推</strong></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//第一段</span></span><br><span class="line">(!![]+[])[!+[]+!+[]+!+[]]  </span><br><span class="line">+</span><br><span class="line"><span class="comment">//第二段</span></span><br><span class="line">[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]] </span><br><span class="line">+</span><br><span class="line"><span class="comment">//第三段</span></span><br><span class="line">(![]+[])[+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第四段</span></span><br><span class="line">[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第五段</span></span><br><span class="line">[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第六段</span></span><br><span class="line">[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第七段</span></span><br><span class="line">(!![]+[])[!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第八段</span></span><br><span class="line">[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第九段</span></span><br><span class="line">([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第十段</span></span><br><span class="line">[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第十一段</span></span><br><span class="line">(![]+[])[+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第十二段</span></span><br><span class="line">(![]+[])[+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第十三段</span></span><br><span class="line">[!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第十四段</span></span><br><span class="line">[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第十五段</span></span><br><span class="line">[!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第十六段</span></span><br><span class="line">[+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第十七段</span></span><br><span class="line">(!![]+[])[!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第十八段</span></span><br><span class="line">[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第十九段</span></span><br><span class="line">[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第二十段</span></span><br><span class="line">([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第二十一段</span></span><br><span class="line">(![]+[])[+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第二十二段</span></span><br><span class="line">([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(![]+[])[!+[]+!+[]]]+[])[!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第二十三段</span></span><br><span class="line">(!![]+[])[!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第二十四段</span></span><br><span class="line">[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第二十五段</span></span><br><span class="line">(![]+[])[+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第二十六段</span></span><br><span class="line">([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第二十七段</span></span><br><span class="line">[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span><br><span class="line">+</span><br><span class="line"><span class="comment">//第二十八段</span></span><br><span class="line">([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p><strong>python拟代码</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#coding=utf8</span></span><br><span class="line"><span class="keyword">import</span> binascii</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line">reload(sys)</span><br><span class="line"></span><br><span class="line"><span class="comment">#e9a699e6b8af3731e78bace7ab8b</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#(!![]+[])[!+[]+!+[]+!+[]]</span></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span></span><br><span class="line">sub1 = <span class="number">1</span>&lt;<span class="number">2</span></span><br><span class="line">sub1_end = <span class="built_in">str</span>(sub1)[<span class="number">3</span>] + <span class="built_in">str</span>(<span class="number">9</span>)</span><br><span class="line"><span class="built_in">print</span> sub1_end            <span class="comment">#e9</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#(![]+[])[+!+[]]</span></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span></span><br><span class="line">sub2 = <span class="number">1</span>&gt;<span class="number">2</span></span><br><span class="line">sub2_end = <span class="built_in">str</span>(sub2)[<span class="number">1</span>] + <span class="built_in">str</span>(<span class="number">6</span>)</span><br><span class="line"><span class="built_in">print</span> sub2_end            <span class="comment">#a6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span></span><br><span class="line">sub3 = <span class="number">9</span></span><br><span class="line">sub3_end = <span class="built_in">str</span>(sub3) + <span class="built_in">str</span>(sub3)</span><br><span class="line"><span class="built_in">print</span> sub3_end           <span class="comment">#99</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#(!![]+[])[!+[]+!+[]+!+[]]</span></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span></span><br><span class="line">sub4 = <span class="number">1</span>&lt;<span class="number">2</span></span><br><span class="line">sub4_end = <span class="built_in">str</span>(sub4)[<span class="number">3</span>] + <span class="built_in">str</span>(<span class="number">6</span>)</span><br><span class="line"><span class="built_in">print</span> sub4_end           <span class="comment">#e6</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]</span></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span></span><br><span class="line">sub5 = <span class="string">&#x27;[object Array Iterator]&#x27;</span></span><br><span class="line">sub5_end = sub5[<span class="number">2</span>] + <span class="built_in">str</span>(<span class="number">8</span>)</span><br><span class="line"><span class="built_in">print</span> sub5_end           <span class="comment">#b8</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#(![]+[])[+!+[]]</span></span><br><span class="line"><span class="comment">#(![]+[])[+[]]</span></span><br><span class="line">sub6 = <span class="number">1</span>&gt;<span class="number">2</span></span><br><span class="line">sub6_end = <span class="built_in">str</span>(sub6)[<span class="number">1</span>] + <span class="built_in">str</span>(sub6).lower()[<span class="number">0</span>]</span><br><span class="line"><span class="built_in">print</span> sub6_end           <span class="comment">#af</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]]</span></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]                </span></span><br><span class="line">sub7 = <span class="number">3</span></span><br><span class="line">sub7_end = <span class="built_in">str</span>(sub7) + <span class="built_in">str</span>(<span class="number">7</span>)</span><br><span class="line"><span class="built_in">print</span> sub7_end           <span class="comment">#37</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]]</span></span><br><span class="line"><span class="comment">#[+!+[]]</span></span><br><span class="line">sub8 = <span class="number">3</span></span><br><span class="line">sub8_end = <span class="built_in">str</span>(sub8) + <span class="built_in">str</span>(<span class="number">1</span>)</span><br><span class="line"><span class="built_in">print</span> sub8_end           <span class="comment">#31</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#(!![]+[])[!+[]+!+[]+!+[]]</span></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span></span><br><span class="line">sub9 = <span class="number">1</span>&lt;<span class="number">2</span></span><br><span class="line">sub9_end = <span class="built_in">str</span>(sub9)[<span class="number">3</span>] + <span class="built_in">str</span>(<span class="number">7</span>)</span><br><span class="line"><span class="built_in">print</span> sub9_end           <span class="comment">#e7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span></span><br><span class="line"><span class="comment">#([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]</span></span><br><span class="line">sub10 = <span class="string">&#x27;[object Array Iterator]&#x27;</span></span><br><span class="line">sub10_end = <span class="built_in">str</span>(<span class="number">8</span>) + sub10[<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span> sub10_end          <span class="comment">#8b</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#(![]+[])[+!+[]]</span></span><br><span class="line"><span class="comment">#([][(![]+[])[+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(![]+[])[!+[]+!+[]]+(![]+[])[!+[]+!+[]]]+[])[!+[]+!+[]+!+[]]</span></span><br><span class="line">sub11 = <span class="number">1</span>&gt;<span class="number">2</span></span><br><span class="line">sub11_end = <span class="built_in">str</span>(sub11)[<span class="number">1</span>] + <span class="string">&#x27;[object Array Iterator]&#x27;</span>[<span class="number">5</span>]</span><br><span class="line"><span class="built_in">print</span> sub11_end          <span class="comment">#ac</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#(!![]+[])[!+[]+!+[]+!+[]]</span></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span></span><br><span class="line">sub12 = <span class="number">1</span>&lt;<span class="number">2</span></span><br><span class="line">sub12_end = <span class="built_in">str</span>(sub12)[<span class="number">3</span>] + <span class="built_in">str</span>(<span class="number">7</span>)</span><br><span class="line"><span class="built_in">print</span> sub12_end          <span class="comment">#e7</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#(![]+[])[+!+[]]</span></span><br><span class="line"><span class="comment">#([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]</span></span><br><span class="line">sub13 = <span class="number">1</span>&gt;<span class="number">2</span></span><br><span class="line">sub13_end = <span class="built_in">str</span>(sub13)[<span class="number">1</span>] + <span class="string">&#x27;[object Array Iterator]&#x27;</span>[<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span> sub13_end          <span class="comment">#ab</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#[!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]+!+[]]</span></span><br><span class="line"><span class="comment">#([][(!![]+[])[!+[]+!+[]+!+[]]+([][[]]+[])[+!+[]]+(!![]+[])[+[]]+(!![]+[])[+!+[]]+([![]]+[][[]])[+!+[]+[+[]]]+(!![]+[])[!+[]+!+[]+!+[]]+(![]+[])[!+[]+!+[]+!+[]]]()+[])[!+[]+!+[]]</span></span><br><span class="line">sub14 = <span class="string">&#x27;[object Array Iterator]&#x27;</span></span><br><span class="line">sub14_end = <span class="built_in">str</span>(<span class="number">8</span>) + <span class="built_in">str</span>(sub14)[<span class="number">2</span>]</span><br><span class="line"><span class="built_in">print</span> sub14_end         <span class="comment">#8b</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;----------------------------------------&#x27;</span></span><br><span class="line">decodestr = sub1_end+sub2_end+sub3_end+sub4_end+sub5_end+sub6_end+sub7_end+sub8_end+sub9_end+sub10_end+sub11_end+sub12_end+sub13_end+sub14_end</span><br><span class="line"><span class="built_in">print</span> decodestr</span><br><span class="line"><span class="built_in">print</span> <span class="string">&#x27;========================================&#x27;</span></span><br><span class="line">no = binascii.a2b_hex(decodestr)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> no</span><br></pre></td></tr></table></figure>
+
+
+
+<p>最后的执行结果</p>
+<p>WTF ？？？？？ 这是有人在搞事情？</p>
+<p><img src="%E7%86%AC%E5%A4%9C%E4%B9%8B%E5%B9%B2JS%E5%8A%A0%E5%AF%86/ssdd.png" alt="ssdd"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>fucklee
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="http://example.com/2020/01/07/%E7%86%AC%E5%A4%9C%E4%B9%8B%E5%B9%B2JS%E5%8A%A0%E5%AF%86/" title="熬夜之干JS加密">http://example.com/2020/01/07/熬夜之干JS加密/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/zh-CN" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/01/06/%E6%B9%96%E6%B9%98%E6%9D%AFWriteup/" rel="prev" title="湖湘杯 writeup">
+                  <i class="fa fa-chevron-left"></i> 湖湘杯 writeup
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2020/01/07/mimikatz%E7%A0%B4%E8%A7%A3Windows%E7%99%BB%E9%99%86%E5%AF%86%E7%A0%81/" rel="next" title="Mimikatz破解Windows登陆密码">
+                  Mimikatz破解Windows登陆密码 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+  
+  
+  
+
+
+
+      
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+      
+
+      
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fucklee</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="//cdn.jsdelivr.net/npm/animejs@3.2.0/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
