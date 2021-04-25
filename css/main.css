@@ -211,14 +211,21 @@ body {
   height: 100%;
 }
 body {
-  background: var(--body-bg-color);
+  background: url("/images/bg.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
   color: var(--text-color);
   font-family: Lato, "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 1em;
   line-height: 2;
-  min-height: 100%;
-  position: relative;
-  transition: all 0.2s ease-in-out;
+  opacity: 0.9;
+}
+@media (max-width: 991px) {
+  body {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
 h1,
 h2,
@@ -277,6 +284,7 @@ embed {
 }
 hr {
   background-image: repeating-linear-gradient(-45deg, #ddd, #ddd 4px, transparent 4px, transparent 8px);
+  background: url("https://pic.netbian.com/uploads/allimg/210423/164930-1619167770a779.jpg");
   border: 0;
   height: 3px;
   margin: 40px 0;
